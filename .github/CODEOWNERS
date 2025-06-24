@@ -1,0 +1,5 @@
+# Global code owners
+* @biplavghosal
+
+# Specific paths can have different owners
+# .github/ @admin-team
