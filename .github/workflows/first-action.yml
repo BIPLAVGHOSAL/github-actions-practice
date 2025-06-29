@@ -16,8 +16,9 @@ jobs:
           # Check if the pull request has a label named 'production'
           # If it does, set the environment variable to 'production'
           # Otherwise, set it to 'devtest'
-          echo "Labels: ${{ github.event.pull_request.labels.*.name }}"
-          if [[ "${{ github.event.pull_request.labels.*.name }}" == *production* ]]; then
+          echo "All labels (names only): ${{ github.event.pull_request.labels.*.name }}"
+          echo "All labels (full JSON): ${{ toJSON(github.event.pull_request.labels) }}"
+          if [[ "${{ contains(github.event.pull_request.labels.*.name, 'production') }}" == "true" ]]; then
             echo "env_target=production" >> $GITHUB_OUTPUT
           else
             echo "env_target=devtest" >> $GITHUB_OUTPUT
